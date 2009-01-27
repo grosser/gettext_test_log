@@ -34,7 +34,6 @@ module GettextTestLog
 
 private
 
-
   def messages_from_test_run
     logfile = 'tmp_gettext_test_log.txt'
     run_tests(logfile)
