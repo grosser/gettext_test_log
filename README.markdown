@@ -45,10 +45,11 @@ Install
 Examples output
 ===============
     #locale/_po/testlog_phrases.rb
-    _("cannot be used with this order.")
-    _("must not include &gt; or &lt;")
-    _("must not include &gt; or &lt;\ncannot be used with this order.")
-
+    _("Add to favorites")
+    _("Added a subtitle to %{name}")
+    _("Additional Information")
+    _("Address")
+    ...
 
 Author
 ======
