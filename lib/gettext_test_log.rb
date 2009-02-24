@@ -16,20 +16,16 @@ module GettextTestLog
   # to activate test message storage
   def activate_test_logging
     if ENV['LOG_GETTEXT']
+      require 'gettext_test_log/fast_gettext_stub'
       Spec::Runner.configure do |config|
         #TODO only call after the 'last' test was executed
-        config.after(:all) do
+        config.before(:all) do
           File.open(ENV['LOG_GETTEXT'],'w') do |f|
-            f.puts GettextTestLog.cached_msgids * SEPERATOR
+            f.puts FastGettext::Translation::TRANSLATIONS_USED * SEPERATOR
           end
         end
       end
     end
-  end
-
-  # all msgids that are cached atm
-  def cached_msgids
-    GetText.module_eval('@@__cache_msgids').keys.map{|target,locale,message|message}.uniq
   end
 
 private
@@ -48,7 +44,7 @@ private
 
   def run_tests(logfile)
     ENV['LOG_GETTEXT']=logfile
-    Rake::Task["spec"].invoke rescue nil
+    Rake::Task["spec:models"].invoke rescue nil
   end
 
   def msgids_in_po_files(files)
@@ -59,7 +55,7 @@ private
   def messages_from_po_file(file)
     require 'gettext'
     require 'gettext/poparser'
-    require 'gettext/mo'
+    require 'gettext/mofile'
     data = MOFile.new
     GetText::PoParser.new.parse(File.read(file),data)
     data

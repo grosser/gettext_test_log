@@ -8,7 +8,7 @@ Solution
 ========
  - log all translations during test execution
  - write them to an parseable temp file
- - use updatepo / makemo as usual
+ - use gettext:find / gettext:pack as usual
  - missing translation = missing test, write tests!
 
 Usage
@@ -18,10 +18,9 @@ Usage
     desc "write all msgids used into testlog_phrases.rb"
     task :gettext_test_log => :environment do
       #place the file should somewhere your updatepo is searching
-      GettextTestLog::write_test_log("locale/_po/testlog_phrases.rb",
+      GettextTestLog::write_test_log("locale/testlog_phrases.rb",
         :exclude_msgids_in_po_files=>[
-          'vendor/plugins/gettext_localize/po/de/gettext_localize.po',
-          '/usr/lib/ruby/gems/1.8/gems/gettext-1.93.0/po/de/rails.po'
+          'some_po_file_that_contains_translations_you_do_not_need.po'
         ]
       )
     end
@@ -32,19 +31,18 @@ Usage
 
   Run:
     rake gettext_test_log
-    rake updatepo  #find new translations
+    rake gettext:find  #find new translations
     #fill newly found translations
-    rake makemo #write translations
+    rake gettext:pack #write translations
 
 Install
 =======
  - As Rails plugin: `script/plugin install git://github.com/grosser/gettext_test_log.git `
- - As gem: `sudo gem install grosser-gettext_test_log --source http://gems.github.com/`
- - As gem from source: `git clone git://github.com/grosser/gettext_test_log.git`,`cd gettext_test_log`,`rake manifest`,`rake install`
+ - As gem: `sudo gem install grosser-gettext_test_log -s http://gems.github.com/`
 
 Examples output
 ===============
-    #locale/_po/testlog_phrases.rb
+    #locale/testlog_phrases.rb
     _("Add to favorites")
     _("Added a subtitle to %{name}")
     _("Additional Information")
