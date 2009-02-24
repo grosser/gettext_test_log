@@ -13,6 +13,8 @@ Solution
 
 Usage
 =====
+!!This will only work with [FastGettext](http://github.com/grosser/fast_gettext) for now!!
+
   Create a rake task:
     #lib/tasks/gettext_test_log.rake
     desc "write all msgids used into testlog_phrases.rb"
@@ -48,6 +50,11 @@ Examples output
     _("Additional Information")
     _("Address")
     ...
+
+TODO
+====
+ - needs tests... :(
+ - make compatible with GetText and FastGettext at the same time ?
 
 Author
 ======
