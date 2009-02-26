@@ -19,7 +19,7 @@ module GettextTestLog
       require 'gettext_test_log/fast_gettext_stub'
       Spec::Runner.configure do |config|
         #TODO only call after the 'last' test was executed
-        config.before(:all) do
+        config.after(:all) do
           File.open(ENV['LOG_GETTEXT'],'w') do |f|
             f.puts FastGettext::Translation::TRANSLATIONS_USED * SEPERATOR
           end
@@ -63,7 +63,9 @@ private
 
   def store_messages(messages,file)
     File.open(file,'w') do |f|
+      f.puts "#GENERATED FILE DO NOT MODIFY"
       f.puts messages.uniq.sort.map{|message| %Q[_("#{message}")].gsub("\n","\\n")} * "\n"
+      f.puts "#GENERATED FILE DO NOT MODIFY"
     end
   end
 end
