@@ -11,36 +11,31 @@ Solution
  - use gettext:find / gettext:pack as usual
  - missing translation = missing test, write tests!
 
+This will only work with [FastGettext](http://github.com/grosser/fast_gettext) for now!
+
+Install
+=======
+ - `script/plugin install git://github.com/grosser/gettext_test_log.git `
+ - Gem: `sudo gem install grosser-gettext_test_log -s http://gems.github.com/`
+
 Usage
 =====
-!!This will only work with [FastGettext](http://github.com/grosser/fast_gettext) for now!!
+    rake gettext:test_log
 
-  Create a rake task:
-    #lib/tasks/gettext_test_log.rake
-    desc "write all msgids used into testlog_phrases.rb"
-    task :gettext_test_log => :environment do
-      #place the file should somewhere your updatepo is searching
-      GettextTestLog::write_test_log("locale/testlog_phrases.rb",
-        :exclude_msgids_in_po_files=>[
-          'some_po_file_that_contains_translations_you_do_not_need.po'
-        ]
-      )
-    end
+Optionally copy+modify task with options:
+    :exclude_msgids_in_po_files=>[
+      'some_po_file_that_contains_translations_you_do_not_need.po'
+    ]
 
   Add to your spec_helper:
     #spec/spec_helper.rb
     GettextTestLog::activate_test_logging
 
   Run:
-    rake gettext_test_log
+    rake gettext:test_log
     rake gettext:find  #find new translations
     #fill newly found translations
     rake gettext:pack #write translations
-
-Install
-=======
- - As Rails plugin: `script/plugin install git://github.com/grosser/gettext_test_log.git `
- - As gem: `sudo gem install grosser-gettext_test_log -s http://gems.github.com/`
 
 Examples output
 ===============

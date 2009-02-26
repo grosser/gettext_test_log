@@ -44,7 +44,7 @@ private
 
   def run_tests(logfile)
     ENV['LOG_GETTEXT']=logfile
-    Rake::Task["spec:models"].invoke rescue nil
+    Rake::Task["spec"].invoke rescue nil
   end
 
   def msgids_in_po_files(files)
