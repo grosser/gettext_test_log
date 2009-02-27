@@ -11,7 +11,7 @@ Solution
  - use gettext:find / gettext:pack as usual
  - missing translation = missing test, write tests!
 
-This will only work with [FastGettext](http://github.com/grosser/fast_gettext) for now!
+This will only work with [FastGettext](http://github.com/grosser/fast_gettext) and RSpec for now!
 
 Install
 =======
