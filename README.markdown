@@ -46,6 +46,17 @@ Examples output
     _("Address")
     ...
 
+Unwanted translations
+=====================
+When using gettext_i18n_rails, most of the columns of a model will be translated during model tests
+this can be annoying since normally no user will see them.
+To disable this, add to `spec/spec_helper.rb` :
+    class ActiveRecord::Base
+      def self.human_attribute_name(attr)
+        attr.to_s
+      end
+    end
+
 TODO
 ====
  - needs tests... :(
