@@ -4,7 +4,6 @@ task :default do
   sh "bundle exec rspec spec"
 end
 
-#Gemspec
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
@@ -14,6 +13,8 @@ begin
     gem.homepage = "http://github.com/grosser/#{gem.name}"
     gem.authors = ["Michael Grosser"]
   end
+
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler, or one of its dependencies, is not available. Install it with: gem install jeweler"
 end

@@ -16,7 +16,7 @@ This will only work with [FastGettext](http://github.com/grosser/fast_gettext) a
 Install
 =======
  - `rails plugin install git://github.com/grosser/gettext_test_log.git `
- - Gem: `sudo gem install grosser-gettext_test_log -s http://gems.github.com/`
+ - Gem: `gem install gettext_test_log`
 
 Usage
 =====
